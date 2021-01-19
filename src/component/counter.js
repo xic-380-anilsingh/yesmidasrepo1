@@ -5,6 +5,7 @@ import {
     INCREMENT,
     DECREMENT
   } from '../redux/action/actionTypes';
+  import {increaseCount ,decreaseCount} from '../redux/action/listAction'
 
 class CounterApp extends Component {
 
@@ -34,8 +35,18 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    increaseCounter: () => dispatch({type: INCREMENT}),
-    decreaseCounter: () => dispatch({type: DECREMENT }),
+  
+    increaseCounter: () => dispatch({
+        type: INCREMENT,
+        value: 1,
+      }),
+    decreaseCounter: () => dispatch({
+        type: DECREMENT,
+        value: 1,
+      }),
+      // increaseCounter: () => dispatch(increaseCount()),
+    // decreaseCounter: () => dispatch(decreaseCount()),
+
  
   };
 }
