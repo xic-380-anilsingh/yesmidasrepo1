@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import {connect} from 'react-redux';
 import {
     INCREMENT,
@@ -8,11 +8,35 @@ import {
   import {increaseCount ,decreaseCount} from '../redux/action/listAction'
 
 class CounterApp extends Component {
+    state={
+        fdScreen:false,
+        counterScreen:false
+    }
 
+
+    componentDidMount() {
+      
+        setTimeout(() => {
+         this.setState({fdScreen:true});
+        }, 3000);
+      
+      }
     render() {
         return (
             <View style={styles.container}>
-       
+                {this.state.fdScreen? <View style={styles.mainView}>
+                    <TouchableOpacity style={styles.button}onPress={() => this.props.increaseCounter()}>
+                        <Text style={styles.text}>Increase</Text>
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 20 }}>{this.props.counterReducer.counter}</Text>
+                    <TouchableOpacity style={styles.button}onPress={() => this.props.decreaseCounter()}>
+                        <Text style={styles.text}>Decrease</Text>
+                    </TouchableOpacity>
+                </View>
+                :<Image style={styles.image} source={require('../res/Images/fd.png')} />
+
+                }
+       {this.state.counterScreen?
                 <View style={styles.mainView}>
                     <TouchableOpacity style={styles.button}onPress={() => this.props.increaseCounter()}>
                         <Text style={styles.text}>Increase</Text>
@@ -22,6 +46,7 @@ class CounterApp extends Component {
                         <Text style={styles.text}>Decrease</Text>
                     </TouchableOpacity>
                 </View>
+                :null}
             </View>
         );
     }
@@ -59,5 +84,6 @@ const styles = StyleSheet.create({
   },
   mainView:{ flex:1, justifyContent: 'space-around',marginTop:50,margin:10,alignItems:'center',justifyContent:'center',padding:20 },
   button:{backgroundColor:'gray',justifyContent:"center",alignItems:"center"},
-  text:{ fontSize: 20,color:'white',padding:10 }
+  text:{ fontSize: 20,color:'white',padding:10 },
+  image:{flex:1,height:"100%",width:'100%'}
 });
