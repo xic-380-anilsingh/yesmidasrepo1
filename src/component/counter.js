@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,Image,Dimensions,
     TouchableHighlight,
     ScrollView,Alert,Button} from 'react-native';
+import ModalDropdown from "react-native-modal-dropdown-with-flatlist";
+
 import {connect} from 'react-redux';
 import {
     INCREMENT,
     DECREMENT
   } from '../redux/action/actionTypes';
+  //import ModalDropdown from 'react-native-modal-dropdown';
+
   import {increaseCount ,decreaseCount} from '../redux/action/listAction'
 //   import ButtonNew from './button'
   const deviceWidth = Dimensions.get("window").width;
@@ -27,8 +31,11 @@ import {
       
       }  
     render() {
+      const DEMO_OPTIONS = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
         return (
             <View style={styles.container}>
+             
+
                 {this.state.fdScreen? <View style={{flex:1}}>
                     <View style={{flex:1}}>
                     <View style={{ margin: 10,flex:1,}}>
@@ -61,8 +68,16 @@ import {
                               color: "#333333",
                             }}
                           >
-                            Timely Notification
+                            Timely Notifications
                           </Text>
+                          <Text>
+                            Select Account
+                          </Text>
+                          <ModalDropdown 
+                          ref="dropdown_2"
+                          options={DEMO_OPTIONS}
+                           >
+                            </ModalDropdown>
                         </View>
                       </View>
                       </View>                
@@ -127,6 +142,11 @@ const styles = StyleSheet.create({
   button:{backgroundColor:'gray',justifyContent:"center",alignItems:"center"},
   text:{ fontSize: 20,color:'white',padding:10 },
   image:{flex:1,height:"100%",width:'100%'},
+  dropdown_1: {
+    flex: 1,
+    top: 32,
+    left: 8,
+  },
 });
 
 const this_styles = StyleSheet.create({
