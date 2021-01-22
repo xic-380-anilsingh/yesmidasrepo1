@@ -9,7 +9,6 @@ import {
     INCREMENT,
     DECREMENT
   } from '../redux/action/actionTypes';
-  //import ModalDropdown from 'react-native-modal-dropdown';
 
   import {increaseCount ,decreaseCount} from '../redux/action/listAction'
 //   import ButtonNew from './button'
